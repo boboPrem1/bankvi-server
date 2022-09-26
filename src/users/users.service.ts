@@ -39,6 +39,23 @@ export class UsersService {
       });
   }
 
+  async findOne2(username: string): Promise<{}>{
+    return await this.usersRepository
+        .findOneBy({ username: username })
+        .then((data) => {
+          return {
+            status: 'Succès',
+            data: data,
+          };
+        })
+        .catch((err) => {
+          return {
+            status: 'Erreur',
+            data: err.message,
+          };
+        });
+  }
+
   async findOne(id: number): Promise<{}> {
     return await this.usersRepository
       .findOneBy({ id: id })

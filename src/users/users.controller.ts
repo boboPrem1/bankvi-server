@@ -24,6 +24,14 @@ export class UsersController {
   async findAll(): Promise<{}> {
     return await this.usersService.findAll();
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/get/' +
+      ':username')
+  async findOne2(@Param() param): Promise<{}> {
+    return await this.usersService.findOne2(param.username);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async findOne(@Param() param): Promise<{}> {
